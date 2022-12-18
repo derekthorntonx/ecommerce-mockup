@@ -1,4 +1,4 @@
-function ShopItem( {itemName, itemDescription, itemPrice, itemRarity, itemPicture} ) {
+function ShopItem( {itemName, itemDescription, itemPrice, itemRarity, itemPicture, setCartItems, cartItems} ) {
     let bgColour;
     let rarity = itemRarity.toUpperCase();
     
@@ -23,6 +23,14 @@ function ShopItem( {itemName, itemDescription, itemPrice, itemRarity, itemPictur
             break;
     }
 
+    function handleItemClick() {
+        let newItem = {
+            name: itemName,
+            price: itemPrice,
+        }
+        setCartItems([...cartItems, newItem]);
+    }
+
     return (
     <div className="shop-item">
         <div className="shop-item-header" style={{backgroundColor: bgColour}}>
@@ -33,7 +41,7 @@ function ShopItem( {itemName, itemDescription, itemPrice, itemRarity, itemPictur
         <div className="shop-item-footer" style={{backgroundColor: bgColour}}>
             <div>"{itemDescription}"</div>
             <div>${itemPrice}</div>
-            <button className="shop-item-button" onClick={()=>{console.log('hello world')}}>+</button>
+            <button className="shop-item-button" onClick={()=>{handleItemClick()}}>+</button>
         </div>
     </div>
     )

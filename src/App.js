@@ -1,13 +1,14 @@
 import './App.css';
-// import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import ShoppingCart from './assets/shopping-cart.png';
 import Banner from './components/Banner';
 import ShopItem from './components/ShopItem';
 import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [dailyShop, setDailyShop] = useState([])
+  const [dailyShop, setDailyShop] = useState([]);
   const [date, setDate] = useState('')
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => 
   async function getShopItems(){
@@ -23,8 +24,12 @@ function App() {
     <div className="App">
       <header className='header'>
       <Banner date={date}/>
-      <button className="shopping-cart-button">Cart</button>
+      <button className="shopping-cart-button" onClick={() => {console.log(cartItems)}}>
+        <img src={ShoppingCart} alt='Check-out Cart'/>
+        <span>{cartItems.length}</span>
+        </button>
       </header>
+
       <div className="main-display">
       {dailyShop.map((entry, index) => (
           <ShopItem key={index}
@@ -33,10 +38,11 @@ function App() {
           itemDescription={entry.items[0].description}
           itemPrice={entry.finalPrice}
           itemPicture={entry.items[0].images.featured}
+          cartItems={cartItems}
+          setCartItems={setCartItems}
           />
         ))}
       </div>
-      
     </div>
   );
 }
