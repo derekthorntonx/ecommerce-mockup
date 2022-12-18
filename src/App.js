@@ -9,6 +9,7 @@ function App() {
   const [dailyShop, setDailyShop] = useState([]);
   const [date, setDate] = useState('')
   const [cartItems, setCartItems] = useState([]);
+  const [showCheckOut, setShowCheckOut] = useState(false);
 
   useEffect(() => 
   async function getShopItems(){
@@ -24,12 +25,11 @@ function App() {
     <div className="App">
       <header className='header'>
       <Banner date={date}/>
-      <button className="shopping-cart-button" onClick={() => {console.log(cartItems)}}>
+      <button className="shopping-cart-button" onClick={() => {setShowCheckOut(true)}}>
         <img src={ShoppingCart} alt='Check-out Cart'/>
         <span>{cartItems.length}</span>
         </button>
       </header>
-
       <div className="main-display">
       {dailyShop.map((entry, index) => (
           <ShopItem key={index}
@@ -41,6 +41,12 @@ function App() {
           cartItems={cartItems}
           setCartItems={setCartItems}
           />
+        ))}
+      </div>
+      <div className={(showCheckOut ? 'checkout-display' : 'hidden')}>
+        <button onClick={() => {setShowCheckOut(false)}}>CLOSE</button>
+        {cartItems.map((item, index) => (
+          <li key={index}>{item.name}</li>
         ))}
       </div>
     </div>
