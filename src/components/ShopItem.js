@@ -39,8 +39,8 @@ function ShopItem( {itemName, itemDescription, itemPrice, itemRarity, itemPictur
         </div>
         <img src={itemPicture} alt=''/>
         <div className="shop-item-footer" style={{backgroundColor: bgColour}}>
-            <div>"{itemDescription}"</div>
-            <div>${itemPrice}</div>
+            <div style={{position: 'relative', top: '15%'}}>"{itemDescription}"</div>
+            <div style={{position: 'relative', top: '25%'}}>${itemPrice}</div>
             <button className="shop-item-button" onClick={()=>{handleItemClick()}}>+</button>
         </div>
     </div>
