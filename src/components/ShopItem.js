@@ -1,4 +1,4 @@
-function ShopItem( {itemName, itemDescription, itemPrice, itemRarity, itemPicture, setCartItems, cartItems} ) {
+function ShopItem( {itemName, itemDescription, itemPrice, itemRarity, itemPicture, setCartItems, cartItems, handlePrice} ) {
     let bgColour;
     let rarity = itemRarity.toUpperCase();
     

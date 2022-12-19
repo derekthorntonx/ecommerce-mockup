@@ -1,7 +1,8 @@
-function CheckoutItem( {item, index, cartItems, setCartItems } ) {
+function CheckoutItem( {item, index, cartItems, setCartItems, setTotalPrice, totalPrice } ) {
 
     function handleCheckoutDelete(){
-        setCartItems(cartItems.slice(0,index).concat(cartItems.slice(index+1)))
+        setCartItems(cartItems.slice(0,index).concat(cartItems.slice(index+1)));
+        setTotalPrice(totalPrice - (cartItems[index].price));
     }
 
     return (
