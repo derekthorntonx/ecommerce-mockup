@@ -2,6 +2,7 @@ import './App.css';
 import ShoppingCart from './assets/shopping-cart.png';
 import Banner from './components/Banner';
 import ShopItem from './components/ShopItem';
+import CheckoutItem from './components/CheckoutItem';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -44,10 +45,12 @@ function App() {
         ))}
       </div>
       <div className={(showCheckOut ? 'checkout-display' : 'hidden')}>
-        <button onClick={() => {setShowCheckOut(false)}}>CLOSE</button>
+        <div className='checkout-list'>
         {cartItems.map((item, index) => (
-          <li key={index}>{item.name}</li>
+          <CheckoutItem key={index} item={item} index={index} setCartItems={setCartItems} cartItems={cartItems} />
         ))}
+        </div>
+        <button onClick={() => {setShowCheckOut(false)}}>CLOSE</button>
       </div>
     </div>
   );
